@@ -1,0 +1,21 @@
+server:
+  port: 6371
+
+spring:
+  application:
+    name: openapi-eureka
+
+eureka:
+  #eureka的自我保护模式
+  server:
+    enable-self-preservation: false
+
+  instance:
+    hostname: localhost
+
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+
+    serviceUrl:
+      defaultZone:  http://${eureka.instance.hostname}:${server.port}/eureka/

@@ -1,4 +1,4 @@
-package com.openplatform;
+package com.openplatform.cache;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
