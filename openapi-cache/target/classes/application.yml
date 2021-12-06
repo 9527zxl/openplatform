@@ -5,10 +5,16 @@ spring:
   application:
     name: openapi-cache
 
+  #连接redis设置
+  redis:
+    host: 122.51.61.131
+    port: 6379
+
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:6371/eureka/
+
   #是否显示主机名 ip
   instance:
-    prefer-ip-address: false
+    prefer-ip-address: true

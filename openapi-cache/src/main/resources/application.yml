@@ -7,7 +7,7 @@ spring:
 
   #连接redis设置
   redis:
-    host:
+    host: 122.51.61.131
     port: 6379
 
 eureka:
