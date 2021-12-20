@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class RedisCacheServiceImpl implements RedisCacheService {
@@ -16,83 +18,93 @@ public class RedisCacheServiceImpl implements RedisCacheService {
 
     @Override
     public boolean setString(String key, String value, long survivalTime) {
-        redisTemplate.opsForValue().set(key,value,survivalTime);
-        return false;
+        if (survivalTime == 0) {
+            redisTemplate.opsForValue().set(key, value);
+        } else {
+            survivalTime = Math.abs(survivalTime);
+            redisTemplate.opsForValue().set(key, value, survivalTime, TimeUnit.MILLISECONDS);
+        }
+        return true;
     }
 
     @Override
     public boolean expireKey(String key, long survivalTime) {
-        
-        return false;
+        return redisTemplate.expire(key, survivalTime, TimeUnit.MILLISECONDS);
     }
 
     @Override
-    public boolean getString(String key) {
-        return false;
+    public String getString(String key) {
+        return (String) redisTemplate.opsForValue().get(key);
     }
 
     @Override
-    public void incrString(String key) {
-
+    public long incrString(String key) {
+        Long increment = redisTemplate.opsForValue().increment(key);
+        return increment;
     }
 
     @Override
-    public void decrString(String key) {
-
+    public long decrString(String key) {
+        Long decrement = redisTemplate.opsForValue().decrement(key);
+        return decrement;
     }
 
     @Override
-    public void incrByString(String key, int increment) {
-
+    public long incrByString(String key, int increment) {
+        return redisTemplate.opsForValue().increment(key, increment);
     }
 
     @Override
-    public void decrByString(String key, int decrement) {
-
+    public long decrByString(String key, int decrement) {
+        return redisTemplate.opsForValue().decrement(key, decrement);
     }
 
     @Override
     public boolean setNxString(String key, String value) {
-        return false;
+        return redisTemplate.opsForValue().setIfAbsent(key, value);
     }
 
     @Override
     public boolean hSetHash(String key, String field, Object value) {
-        return false;
+        redisTemplate.opsForHash().put(key, field, value);
+        return true;
     }
 
     @Override
     public Object hGetHash(String key, String field) {
-        return null;
+        return redisTemplate.opsForHash().get(key, field);
     }
 
     @Override
     public boolean hmSetHash(String key, Map<String, Object> map) {
-        return false;
+        redisTemplate.opsForHash().putAll(key, map);
+        return true;
     }
 
     @Override
     public boolean hSetNxHash(String key, String field, Object value) {
-        return false;
+        return redisTemplate.opsForHash().putIfAbsent(key, field, value);
     }
 
     @Override
-    public Map<String, Object> hGetHashAll(String key) {
-        return null;
+    public Map<Object, Object> hGetHashAll(String key) {
+        return redisTemplate.opsForHash().entries(key);
     }
 
     @Override
-    public boolean sAddSet(String key, Object member) {
-        return false;
+    public long sAddSet(String key, Object member) {
+        Long add = redisTemplate.opsForSet().add(key, member);
+        return add;
     }
 
     @Override
-    public boolean sAddSet(String key, List<Object> members) {
-        return false;
+    public long sAddSetAll(String key, List<Object> members) {
+        return redisTemplate.opsForSet().add(key, members.toArray());
     }
 
     @Override
-    public List<Object> sMembersSetAll(String key) {
-        return null;
+    public Set<Object> sMembersSetAll(String key) {
+        Set<Object> members = redisTemplate.opsForSet().members(key);
+        return members;
     }
 }

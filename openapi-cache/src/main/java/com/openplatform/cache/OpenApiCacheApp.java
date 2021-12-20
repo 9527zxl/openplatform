@@ -8,6 +8,6 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @EnableEurekaClient
 public class OpenApiCacheApp {
     public static void main(String[] args) {
-        SpringApplication.run(OpenApiCacheApp.class,args);
+        SpringApplication.run(OpenApiCacheApp.class, args);
     }
 }

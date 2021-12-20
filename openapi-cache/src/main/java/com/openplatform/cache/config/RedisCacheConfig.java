@@ -23,7 +23,7 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
     //自定义缓存key生成策略
     @Bean
     public KeyGenerator keyGenerator() {
-        return (target, method, params)->{
+        return (target, method, params) -> {
             StringBuilder builder = new StringBuilder();
             builder.append(target.getClass().getName());
             builder.append(method.getName());
@@ -42,13 +42,13 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
         //创建默认的缓存配置对象
         RedisCacheConfiguration configuration = RedisCacheConfiguration.defaultCacheConfig();
         //根据我们的默认配置和写入方式创建缓存的管理器
-        RedisCacheManager cacheManager = new RedisCacheManager(writer,configuration);
+        RedisCacheManager cacheManager = new RedisCacheManager(writer, configuration);
         return cacheManager;
     }
 
     //重写RedisTemp对象,创建模板对象
     @Bean
-    public RedisTemplate<String, Object> redisTemplate(LettuceConnectionFactory connectionFactory){
+    public RedisTemplate<String, Object> redisTemplate(LettuceConnectionFactory connectionFactory) {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(connectionFactory);//设置要连接的 redis
 
