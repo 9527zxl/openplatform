@@ -164,7 +164,7 @@ public class RedisCacheController {
      * @param key
      * @return
      */
-    @RequestMapping(value = "/hGetHashAll",produces = "application/json")
+    @RequestMapping(value = "/hGetHashAll/{key}",produces = "application/json")
     public Map<Object, Object> hGetHashAll(@PathVariable String key) {
         KeyUtils.exit(key);
         return cacheService.hGetHashAll(key);

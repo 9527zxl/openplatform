@@ -2,12 +2,14 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="openapi-cache" />
         <module name="openapi-eureka" />
+        <module name="openapi-web-master" />
       </profile>
     </annotationProcessing>
   </component>
@@ -15,6 +17,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="openapi-cache" options="-parameters" />
       <module name="openapi-eureka" options="-parameters" />
+      <module name="openapi-web-master" options="-parameters" />
     </option>
   </component>
 </project>
