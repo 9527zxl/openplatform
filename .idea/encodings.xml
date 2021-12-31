@@ -2,6 +2,7 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/openapi-cache/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/openapi-commons/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/openapi-eureka/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/openapi-web-master/src/main/java" charset="UTF-8" />
   </component>

@@ -11,6 +11,7 @@
         <module>openapi-cache</module>
         <module>openapi-eureka</module>
         <module>openapi-web-master</module>
+        <module>openapi-commons</module>
     </modules>
     <packaging>pom</packaging>
 
