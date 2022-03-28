@@ -23,5 +23,5 @@ eureka:
 
 #mybatis配置
 mybatis:
-  mapper-locations: classoath:mapper/*.xml
+  mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.openplatform.webmaster.pojo

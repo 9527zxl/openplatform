@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-public class sysMenuController {
+public class SysMenuController {
     @Autowired
     private MenuService menuService;
 
